@@ -12,6 +12,17 @@ class TestData:
     exempl_ingred = Ingredient('red','paper',9.7)
     exempl_ingred_sec = Ingredient('ice', 'berry', 9.7)
 
+    @staticmethod
+    def gen_receipt(bun, ingredients_list):
+        receipt = [f'(==== {bun.get_name()} ====)']
+        price = bun.get_price() * 2
+        for ingredient in ingredients_list:
+            receipt.append(f'= {str(ingredient.get_type()).lower()} {ingredient.get_name()} =')
+            price += ingredient.get_price()
+        receipt.append(f'(==== {bun.get_name()} ====)\n')
+        receipt.append(f'Price: {price}')
+        return '\n'.join(receipt)
+
 class TestBurger:
     @pytest.mark.parametrize('test_param', [
         'bun',
@@ -56,3 +67,9 @@ class TestBurger:
         burger.set_buns(TestData.exempl_bun)
         assert burger.get_price() == TestData.exempl_ingred.get_price()+TestData.exempl_ingred_sec.get_price()+TestData.exempl_bun.get_price()*2
 
+    def test_get_receipt(self):
+        burger = Burger()
+        burger.add_ingredient(TestData.exempl_ingred)
+        burger.add_ingredient(TestData.exempl_ingred_sec)
+        burger.set_buns(TestData.exempl_bun)
+        assert burger.get_receipt() == TestData.gen_receipt(TestData.exempl_bun,[TestData.exempl_ingred, TestData.exempl_ingred_sec])
