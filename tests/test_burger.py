@@ -10,6 +10,7 @@ class TestInitData:
 class TestData:
     exempl_bun = Bun("exo", 11.22)
     exempl_ingred = Ingredient('red','paper',9.7)
+    exempl_ingred_sec = Ingredient('ice', 'berry', 9.7)
 
 class TestBurger:
     @pytest.mark.parametrize('test_param', [
@@ -30,10 +31,15 @@ class TestBurger:
         burger.add_ingredient(TestData.exempl_ingred)
         assert getattr(burger, 'ingredients') == [TestData.exempl_ingred]
 
-    def test_add_ingredient(self):
+    def test_remove_ingredient(self):
         burger = Burger()
         burger.add_ingredient(TestData.exempl_ingred)
         burger.remove_ingredient(0)
         assert getattr(burger, 'ingredients') == []
 
-
+    def test_move_ingredient(self):
+        burger = Burger()
+        burger.add_ingredient(TestData.exempl_ingred)
+        burger.add_ingredient(TestData.exempl_ingred_sec)
+        burger.move_ingredient(1,0)
+        assert getattr(burger, 'ingredients')[0] == TestData.exempl_ingred_sec
