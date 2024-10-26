@@ -1,15 +1,15 @@
 import pytest
 from praktikum.database import Database
-from praktikum.bun import Bun
+
 
 class TestDatabase:
 
-    @pytest.mark.parametrize('number_in_list, name, price',[
+    @pytest.mark.parametrize('number_in_list, name, price', [
         (0, "black bun", 100),
         (1, "white bun", 200),
         (2, "red bun", 300)
     ])
-    def test_init_data_buns(self, number_in_list, name, price ):
+    def test_init_data_buns(self, number_in_list, name, price):
         database = Database()
         exempl_bun = getattr(database, 'buns')[number_in_list]
         assert exempl_bun.get_name() == name and exempl_bun.get_price() == price

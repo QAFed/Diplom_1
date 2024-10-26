@@ -1,10 +1,13 @@
 import pytest
 
 from praktikum.ingredient import Ingredient
+
+
 class TestData:
     type = "green"
     name = 'onion'
     price = 3.3
+
 
 class TestIngredient:
     @pytest.mark.parametrize('test_param', [

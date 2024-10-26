@@ -1,15 +1,17 @@
 import pytest
-
 from praktikum.burger import Burger
 from praktikum.bun import Bun
 from praktikum.ingredient import Ingredient
+
+
 class TestInitData:
     bun = None
     ingredients = []
 
+
 class TestData:
     exempl_bun = Bun("exo", 11.22)
-    exempl_ingred = Ingredient('red','paper',9.7)
+    exempl_ingred = Ingredient('red', 'paper', 9.7)
     exempl_ingred_sec = Ingredient('ice', 'berry', 9.7)
 
     @staticmethod
@@ -22,6 +24,7 @@ class TestData:
         receipt.append(f'(==== {bun.get_name()} ====)\n')
         receipt.append(f'Price: {price}')
         return '\n'.join(receipt)
+
 
 class TestBurger:
     @pytest.mark.parametrize('test_param', [
@@ -52,7 +55,7 @@ class TestBurger:
         burger = Burger()
         burger.add_ingredient(TestData.exempl_ingred)
         burger.add_ingredient(TestData.exempl_ingred_sec)
-        burger.move_ingredient(1,0)
+        burger.move_ingredient(1, 0)
         assert getattr(burger, 'ingredients')[0] == TestData.exempl_ingred_sec
 
     def test_get_price_bun_x_2(self):
@@ -72,4 +75,4 @@ class TestBurger:
         burger.add_ingredient(TestData.exempl_ingred)
         burger.add_ingredient(TestData.exempl_ingred_sec)
         burger.set_buns(TestData.exempl_bun)
-        assert burger.get_receipt() == TestData.gen_receipt(TestData.exempl_bun,[TestData.exempl_ingred, TestData.exempl_ingred_sec])
+        assert burger.get_receipt() == TestData.gen_receipt(TestData.exempl_bun, [TestData.exempl_ingred, TestData.exempl_ingred_sec])

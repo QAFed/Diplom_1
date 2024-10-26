@@ -1,9 +1,11 @@
 import pytest
-
 from praktikum.bun import Bun
+
+
 class TestData:
     name = 'slim'
     price = 11.1
+
 
 class TestBun:
     @pytest.mark.parametrize('test_param', [
