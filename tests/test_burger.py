@@ -30,4 +30,10 @@ class TestBurger:
         burger.add_ingredient(TestData.exempl_ingred)
         assert getattr(burger, 'ingredients') == [TestData.exempl_ingred]
 
+    def test_add_ingredient(self):
+        burger = Burger()
+        burger.add_ingredient(TestData.exempl_ingred)
+        burger.remove_ingredient(0)
+        assert getattr(burger, 'ingredients') == []
+
 
