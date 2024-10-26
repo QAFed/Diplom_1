@@ -6,7 +6,7 @@ class TestData:
     name = 'onion'
     price = 3.3
 
-class TestBun:
+class TestIngredient:
     @pytest.mark.parametrize('test_param', [
         'type',
         'name',
