@@ -1,5 +1,6 @@
 import pytest
 from praktikum.database import Database
+from praktikum.bun import Bun
 
 class TestDatabase:
 
@@ -26,5 +27,11 @@ class TestDatabase:
         exempl_ing = getattr(database, 'ingredients')[number_in_list]
         assert exempl_ing.get_name() == name and exempl_ing.get_price() == price and exempl_ing.get_type()
 
+    def test_available_buns(self):
+        database = Database()
+        assert len(database.available_buns()) == 3
 
+    def test_available_ingredients(self):
+        database = Database()
+        assert len(database.available_ingredients()) == 6
 
