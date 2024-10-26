@@ -43,3 +43,16 @@ class TestBurger:
         burger.add_ingredient(TestData.exempl_ingred_sec)
         burger.move_ingredient(1,0)
         assert getattr(burger, 'ingredients')[0] == TestData.exempl_ingred_sec
+
+    def test_get_price_bun_x_2(self):
+        burger = Burger()
+        burger.set_buns(TestData.exempl_bun)
+        assert burger.get_price() == TestData.exempl_bun.get_price()*2
+
+    def test_get_prise_sum_ingrdients_n_bun(self):
+        burger = Burger()
+        burger.add_ingredient(TestData.exempl_ingred)
+        burger.add_ingredient(TestData.exempl_ingred_sec)
+        burger.set_buns(TestData.exempl_bun)
+        assert burger.get_price() == TestData.exempl_ingred.get_price()+TestData.exempl_ingred_sec.get_price()+TestData.exempl_bun.get_price()*2
+
