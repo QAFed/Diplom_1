@@ -2,12 +2,14 @@ import pytest
 
 from praktikum.burger import Burger
 from praktikum.bun import Bun
+from praktikum.ingredient import Ingredient
 class TestInitData:
     bun = None
     ingredients = []
 
 class TestData:
     exempl_bun = Bun("exo", 11.22)
+    exempl_ingred = Ingredient('red','paper',9.7)
 
 class TestBurger:
     @pytest.mark.parametrize('test_param', [
@@ -22,5 +24,10 @@ class TestBurger:
         burger = Burger()
         burger.set_buns(TestData.exempl_bun)
         assert getattr(burger, 'bun') == TestData.exempl_bun
+
+    def test_add_ingredient(self):
+        burger = Burger()
+        burger.add_ingredient(TestData.exempl_ingred)
+        assert getattr(burger, 'ingredients') == [TestData.exempl_ingred]
 
 
